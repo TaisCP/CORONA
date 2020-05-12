@@ -1,10 +1,24 @@
 <html5>
   <head>
     <script src="https://cdn.jsdelivr.net/npm/p5@0.10.2/lib/p5.js" charset="utf-8"></script>
-    <script src="Corona.js" charset="utf-8"></script>
   </head>
 
   <body>
+    <button onclick="fjernland()">fjern sidste land</button>
+    <div>
+      <form onsubmit="return tilføjland()">
+        <p>Tilføj lande</p>
+        <input type="text" id="box">
+        <input type="submit" value="Submit">
+      </form>
+    </div>
+    <form onsubmit="return tilføjprovins()">
+      <p>Tilføj provinser</p>
+    <input type="text" id="box2">
+    <input type="submit" value="Submit">
+    </form>
+
+    <script src="corona.js" charset="utf-8"></script>
   </body>
 
 
@@ -15,3 +29,4 @@
 
 
 </html5>
+
