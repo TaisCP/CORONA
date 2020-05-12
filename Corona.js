@@ -4,18 +4,16 @@ let count=5;
 function preload() {
   table = loadTable('https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv', 'csv','header');
 }
-let Countries = ['Afghanistan',"Argentina","Austria","Bangladesh","Belarus","Belgium","Brazil","Egypt", "Finland", "Germany","Iran","Japan","Norway","Russia","Spain","Italy","South Sudan","Libya","Zimbabwe","Vietnam","Uzbekistan","Uruguay","Uruguay","Uruguay","Uruguay","Uruguay","Uruguay","Uruguay","Uruguay","Uruguay"];
-let Provinces = ["Hubei", "Hong Kong","Queensland","Ontario","Beijing",];
+let Countries = ["Belarus","Belgium","Brazil","Egypt", "Finland", "Germany","Iran","Japan","Norway","Russia","Spain","Italy","South Sudan","Libya","Zimbabwe","Vietnam","Uzbekistan","Uruguay","Uruguay","Uruguay","Uruguay","Uruguay","Uruguay","Uruguay","Uruguay","Uruguay"];
+let Provinces = ["Hubei","Hong Kong","Queensland","Ontario","Beijing",];
 
 function setup() {
   createCanvas(windowWidth,windowHeight);
   background(0,100,200);
-
-  Italy = table.findRow('Italy','Country/Region');
   head = table.columns;
   textSize(60);
   fill(200);
-  frameRate(10);
+  frameRate(5);
 
 }
 
@@ -30,11 +28,30 @@ function setup() {
 //  } else {
 //    let y = 100;
 //  }
+function tilføjland() {
+  boxvalue = document.getElementById('box').value;
+  Countries.push(boxvalue);
+  if (table.findRow(boxvalue,'Country/Region').arr[3] = null){
+      Countries.splice(Countries.length-1);
+    }
+  return false;
+}
+function tilføjprovins() {
+  boxvalue2 = document.getElementById('box2').value;
+  Provinces.push(boxvalue2);
+    if (table.findRow(boxvalue2,'Province/State').arr[3] = null){
+        Provinces.splice(Provinces.length-1);
+    }
+  return false;
+}
+
+function fjernland(){
+  Countries.splice(Countries.length-1);
+  return false;
+}
 
 function draw(){
   background(0,100,200);
-  table.findRow(Countries[0],'Country/Region').arr[count];//-Spain.arr[count-1];
-  italienDøde = Italy.arr[count];
   let d;
   let p;
   var i;
@@ -76,5 +93,7 @@ function draw(){
   count +=1;
   if (count>table.getColumnCount()-1){
     count = 5;
+    return false;
   }
 }
+
